@@ -81,7 +81,7 @@ function App() {
       </main>
       
       <footer className="app-footer">
-        <p>Built with ❤️ using React & Vite</p>
+        <p>!..........!</p>
       </footer>
     </div>
   )
