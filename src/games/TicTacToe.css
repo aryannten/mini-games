@@ -1,0 +1,141 @@
+.tic-tac-toe {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background: rgba(20, 20, 30, 0.7);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.back-btn, .reset-btn {
+  background: #1f2937;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover, .reset-btn:hover {
+  background: #374151;
+  border-color: rgba(147, 51, 234, 0.3);
+}
+
+.game-status {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.cell {
+  width: 90px;
+  height: 90px;
+  background: rgba(30, 30, 40, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  backdrop-filter: blur(10px);
+}
+
+.cell:hover {
+  background: rgba(50, 50, 60, 0.9);
+  transform: translateY(-2px);
+  border-color: rgba(147, 51, 234, 0.5);
+}
+
+.cell:disabled, .cell.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.mode-selection {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.mode-selection h3 {
+  color: white;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+}
+
+.mode-buttons {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.mode-btn {
+  background: rgba(30, 30, 40, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  min-width: 200px;
+  backdrop-filter: blur(10px);
+}
+
+.mode-btn:hover {
+  background: rgba(50, 50, 60, 0.9);
+  border-color: rgba(147, 51, 234, 0.5);
+  transform: translateY(-4px);
+}
+
+.mode-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.mode-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.mode-desc {
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+@media (max-width: 768px) {
+  .mode-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .mode-btn {
+    min-width: 250px;
+  }
+}

@@ -1,0 +1,137 @@
+.game-card {
+  background: rgba(20, 20, 30, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 280px;
+  width: 230px;
+  flex-shrink: 0;
+}
+
+.game-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-color: rgba(147, 51, 234, 0.5);
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.2), rgba(147, 51, 234, 0.1));
+}
+
+.game-card:hover .game-icon-container {
+  background: rgba(147, 51, 234, 0.2);
+}
+
+.game-card:hover .play-button {
+  background: #9333ea;
+  color: white;
+  border-color: transparent;
+}
+
+.game-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.game-icon-container {
+  width: 50px;
+  height: 50px;
+  background: rgba(147, 51, 234, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.game-icon {
+  font-size: 1.5rem;
+}
+
+.difficulty-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: white;
+}
+
+.game-info {
+  flex: 1;
+  text-align: left;
+}
+
+.game-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: white;
+}
+
+.game-description {
+  color: #94a3b8;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.play-button {
+  background: #1f2937;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.play-icon {
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .game-card {
+    width: 180px;
+    height: 220px;
+    padding: 1rem;
+  }
+  
+  .game-icon-container {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .game-icon {
+    font-size: 1.3rem;
+  }
+  
+  .game-title {
+    font-size: 1rem;
+  }
+  
+  .game-description {
+    font-size: 0.75rem;
+  }
+  
+  .play-button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+}
