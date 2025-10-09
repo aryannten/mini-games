@@ -4,9 +4,9 @@ A modern, interactive web-based gaming platform featuring classic mini-games bui
 
 ## 🌟 Live Demo
 
-**[🚀 Play Now - Live Demo](https://yourusername.github.io/mini-proj/)**
+**[🚀 Play Now - Live Demo](https://aryannten.github.io/mini-proj/)**
 
-*Note: Replace `yourusername` with your actual GitHub username after deployment*
+*Click the link above to play the games instantly in your browser - no installation required!*
 
 ## 📋 About This Project
 
