@@ -37,13 +37,65 @@ Guess the secret number between 1 and 100 with helpful hints.
 ### 🎮 Tic Tac Toe (Hard)
 Classic X and O strategy game with computer AI and multiplayer modes.
 
-## 🛠️ Technologies Used
+## 🛠️ Technologies Used & Implementation Details
 
-- **Frontend Framework**: React 18
-- **Build Tool**: Vite
-- **Styling**: CSS3 with modern features (Flexbox, Grid, Backdrop Filter)
-- **State Management**: React Hooks (useState, useEffect)
-- **Development Tools**: ESLint for code quality
+### **React 18 - Frontend Framework**
+**Implementation in Project:**
+- **Component Architecture**: Built 4 separate game components (MemoryGame.jsx, TicTacToe.jsx, etc.) and reusable GameCard component
+- **Functional Components**: Used modern function-based components with JSX syntax for all UI elements
+- **React Hooks**: 
+  - `useState` for managing game states (board positions, scores, current player, game status)
+  - `useEffect` for handling side effects like computer AI moves and game timers
+- **Props & State Flow**: Parent-child data communication between App.jsx and individual game components
+- **Conditional Rendering**: Dynamic UI updates based on game states (showing winners, switching turns, etc.)
+
+### **JavaScript ES6+ - Core Programming Language**
+**Implementation in Project:**
+- **Arrow Functions**: Used throughout components for cleaner syntax (`const handleClick = () => {}`)
+- **Destructuring**: Extracted state values and props efficiently (`const { board, currentPlayer } = gameState`)
+- **Array Methods**: Implemented game logic using map(), filter(), find() for board manipulation
+- **Spread Operator**: State updates without mutation (`setBoard([...newBoard])`)
+- **Template Literals**: Dynamic string generation for game messages and UI text
+- **Modules**: Organized code with import/export statements between components
+
+### **CSS3 - Advanced Styling & Design**
+**Implementation in Project:**
+- **CSS Grid**: Game board layouts (3x3 grid for Tic Tac Toe, card layouts for Memory Game)
+- **Flexbox**: Card arrangements, button layouts, and responsive design
+- **CSS Custom Properties**: Consistent color scheme with variables (--primary-color, --bg-color)
+- **Backdrop Filter**: Glassmorphism effects on game cards with blur(20px) and transparency
+- **CSS Transitions**: Smooth hover effects and game piece animations
+- **Media Queries**: Responsive breakpoints for mobile, tablet, and desktop layouts
+- **Pseudo-classes**: Interactive states (:hover, :active, :focus) for better UX
+
+### **Vite - Build Tool & Development Server**
+**Implementation in Project:**
+- **Hot Module Replacement**: Instant updates during development without losing game state
+- **Fast Build Process**: Optimized bundling for production deployment
+- **Asset Optimization**: Automatic CSS and JavaScript minification
+- **Development Server**: Local testing environment with live reload
+- **GitHub Pages Configuration**: Custom base path setup for deployment
+
+### **HTML5 - Semantic Structure**
+**Implementation in Project:**
+- **Semantic Elements**: Used `<main>`, `<section>`, `<header>` for proper document structure
+- **Accessibility**: ARIA labels and proper heading hierarchy for screen readers
+- **Form Elements**: Input validation in Number Guesser game with proper input types
+- **Meta Tags**: Viewport configuration for mobile responsiveness
+
+### **Git & GitHub - Version Control & Deployment**
+**Implementation in Project:**
+- **Repository Management**: Organized commit history with descriptive commit messages
+- **GitHub Pages**: Automated deployment pipeline using gh-pages package
+- **Branch Management**: Main branch for production-ready code
+- **Continuous Deployment**: Automatic updates to live site when changes are pushed
+
+### **Node.js & npm - Package Management**
+**Implementation in Project:**
+- **Dependency Management**: React, Vite, ESLint packages managed through package.json
+- **Build Scripts**: Custom npm scripts for development, building, and deployment
+- **Development Dependencies**: ESLint for code quality, gh-pages for deployment
+- **Package Versions**: Specific version management for consistent builds across environments
 
 ## 🚀 Getting Started
 
