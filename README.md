@@ -4,11 +4,8 @@ A modern, interactive web-based gaming platform featuring classic mini-games bui
 
 ## 🌟 Live Demo
 
-**[🚀 Play Now - Live Demo](https://aryannten.github.io/mini-proj/)**
+**[🚀 Play Now -](https://aryannten.github.io/mini-proj/)**
 
-> 🎮 **Try it now!** Click the link above to play all four games instantly in your browser - no downloads, no installation, no setup required! Works on desktop, tablet, and mobile devices.
-
-*Note: If the link shows a white screen, wait 2-3 minutes for deployment to complete, then refresh the page.*
 
 ## 📋 About This Project
 
@@ -243,4 +240,4 @@ The live version is hosted on GitHub Pages and accessible worldwide:
 
 ---
 
-**📚 Educational Project**: This miniproject showcases practical web development skills for academic evaluation and demonstrates proficiency in modern front-end technologies and deployment practices.
+**📚 Educational Project**: This miniproject showcases practical web development skills for academic evaluation and demonstrates proficiency in modern technologies and deployment practices.
