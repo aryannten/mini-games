@@ -97,7 +97,11 @@ function App() {
       </main>
       
       <footer className="app-footer">
+<<<<<<< HEAD
         <p>!........!</p>
+=======
+        <p>!..........!</p>
+>>>>>>> 790ab52165b729589ec44dad0059864908996cdf
       </footer>
     </div>
   )
