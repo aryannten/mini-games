@@ -1,0 +1,60 @@
+.reaction-wrap {
+  max-width: 720px;
+  margin: 2rem auto;
+  color: white;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.game-header h2 {
+  margin: 0;
+}
+
+.reaction-area {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.reaction-box {
+  flex: 1 1 60%;
+  height: 320px;
+  border-radius: 16px;
+  background: rgba(20,20,30,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  transition: background 0.2s ease, transform 0.15s ease;
+  cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.reaction-box.wait {
+  background: rgba(90,30,60,0.7);
+}
+
+.reaction-box.go {
+  background: #16a34a; /* green */
+  color: #06140a;
+  transform: scale(1.02);
+}
+
+.reaction-box.result {
+  background: rgba(30,30,40,0.6);
+}
+
+.reaction-box .msg { text-align:center }
+
+.reaction-controls { display:flex; flex-direction:column; gap:0.75rem; }
+
+.reaction-controls .primary { background:#9333ea; color:white; border:none; padding:0.6rem 1rem; border-radius:8px }
+
+.stats { color:#94a3b8; margin-top:0.5rem; }
+
+.back-button { background:transparent; border:none; color:#94a3b8; cursor:pointer }

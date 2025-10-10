@@ -4,6 +4,7 @@ import GameCard from './components/GameCard'
 import TicTacToe from './games/TicTacToe'
 import NumberGuesser from './games/NumberGuesser'
 import RockPaperScissors from './games/RockPaperScissors'
+import ReactionTest from './games/ReactionTest'
 import MemoryGame from './games/MemoryGame'
 
 function App() {
@@ -19,11 +20,11 @@ function App() {
       difficulty: 'Medium'
     },
     {
-      id: 'rockpaperscissors',
+      id: 'reactiontest',
       title: 'Reaction Test',
       description: 'How fast can you react? Click when you see green!',
       icon: '⚡',
-      component: RockPaperScissors,
+      component: ReactionTest,
       difficulty: 'Easy'
     },
     {
