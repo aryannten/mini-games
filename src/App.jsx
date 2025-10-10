@@ -55,6 +55,8 @@ function App() {
 
   const currentGameData = games.find(game => game.id === currentGame)
 
+  const isEmpty = games.length === 0
+
   if (currentGame && currentGameData) {
     const GameComponent = currentGameData.component
     return <GameComponent onBack={handleBackToHub} />
@@ -68,22 +70,9 @@ function App() {
         <p>Play exciting mini games right in your browser. No downloads, just pure fun!</p>
       </header>
       
-      <section className="stats-section">
-        <div className="stat-item">
-          <div className="stat-number">12,847+</div>
-          <div className="stat-label">Total Players</div>
-        </div>
-        <div className="stat-item">
-          <div className="stat-number">4</div>
-          <div className="stat-label">Epic Games</div>
-        </div>
-        <div className="stat-item">
-          <div className="stat-number">4⭐</div>
-          <div className="stat-label">Average Rating</div>
-        </div>
-      </section>
+      {/* stats section removed */}
       
-      <main className="games-grid">
+      <main className={`games-grid ${isEmpty ? 'empty' : ''}`}>
         {games.map(game => (
           <GameCard
             key={game.id}

@@ -1,9 +1,11 @@
 .app {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   background: #0a0a0f;
   color: white;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .app::before {
@@ -22,9 +24,12 @@
 
 .app-header {
   text-align: center;
-  padding: 4rem 2rem 1rem;
-  position: relative;
-  z-index: 1;
+  padding: 1.5rem 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(180deg, rgba(10,10,15,0.6), rgba(10,10,15,0.25));
 }
 
 .app-header .game-controller {
@@ -55,15 +60,28 @@
 }
 
 .games-grid {
-  display: flex;
+  /* make the games area grow and be scrollable on small viewports */
+  flex: 1 1 auto;
+  overflow-y: auto;
+  display: grid;
   gap: 1.5rem;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem 4rem;
+  padding: 1.25rem 1rem 2.5rem;
   position: relative;
   z-index: 1;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  align-items: start;
+}
+
+/* Center grid vertically/horizontally when empty */
+.games-grid.empty {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  flex-wrap: nowrap;
+  /* Reserve space for header and footer so centering is visually balanced */
+  min-height: calc(100vh - var(--header-height, 120px) - var(--footer-height, 64px));
+  padding: 1rem;
 }
 
 .app-footer {
@@ -85,12 +103,13 @@
   }
   
   .app-header {
-    padding: 2rem 1rem 1rem;
+    padding: 1rem;
   }
-  
+
+  /* single-column layout for narrow screens; vertical scroll for cards */
   .games-grid {
     gap: 1rem;
-    padding: 0 1rem 3rem;
-    justify-content: center;
+    padding: 0.75rem 0.75rem 2rem;
+    grid-template-columns: 1fr;
   }
 }

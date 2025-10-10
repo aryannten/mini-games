@@ -1,20 +1,20 @@
 .game-card {
-  background: rgba(20, 20, 30, 0.7);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 1.25rem;
+  background: rgba(20, 20, 30, 0.75);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 1rem;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.24s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.24s;
   color: white;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 280px;
-  width: 230px;
-  flex-shrink: 0;
+  height: 100%;
+  width: 100%;
+  min-height: 220px;
 }
 
 .game-card:hover {
@@ -108,9 +108,9 @@
 
 @media (max-width: 768px) {
   .game-card {
-    width: 180px;
-    height: 220px;
-    padding: 1rem;
+    width: 100%;
+    min-height: 180px;
+    padding: 0.9rem;
   }
   
   .game-icon-container {
