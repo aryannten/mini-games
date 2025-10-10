@@ -20,9 +20,9 @@ function App() {
     },
     {
       id: 'rockpaperscissors',
-      title: 'Rock Paper Scissors',
-      description: 'Classic hand game - beat the computer!',
-      icon: '✂️',
+      title: 'Reaction Test',
+      description: 'How fast can you react? Click when you see green!',
+      icon: '⚡',
       component: RockPaperScissors,
       difficulty: 'Easy'
     },
@@ -67,6 +67,21 @@ function App() {
         <p>Play exciting mini games right in your browser. No downloads, just pure fun!</p>
       </header>
       
+      <section className="stats-section">
+        <div className="stat-item">
+          <div className="stat-number">12,847+</div>
+          <div className="stat-label">Total Players</div>
+        </div>
+        <div className="stat-item">
+          <div className="stat-number">4</div>
+          <div className="stat-label">Epic Games</div>
+        </div>
+        <div className="stat-item">
+          <div className="stat-number">4⭐</div>
+          <div className="stat-label">Average Rating</div>
+        </div>
+      </section>
+      
       <main className="games-grid">
         {games.map(game => (
           <GameCard
@@ -81,7 +96,7 @@ function App() {
       </main>
       
       <footer className="app-footer">
-        <p>Built with ❤️ using React & Vite</p>
+        <p>!........!</p>
       </footer>
     </div>
   )
