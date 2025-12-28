@@ -166,6 +166,51 @@ function App() {
     )
   }
 
+  if (showAchievements) {
+    const allAchievements = achievementManager.getAllAchievements()
+    const unlockedCount = allAchievements.filter(a => a.unlocked).length
+    
+    return (
+      <div className="app">
+        <header className="app-header">
+          <div className="game-controller">🏅</div>
+          <h1>Achievements</h1>
+          <p>Unlocked: {unlockedCount} / {allAchievements.length}</p>
+        </header>
+        
+        <div className="stats-container">
+          <div className="stats-header">
+            <button 
+              onClick={() => {
+                setShowAchievements(false)
+                soundManager.playClick()
+              }} 
+              className="back-btn"
+            >
+              ← Back to Games
+            </button>
+          </div>
+          
+          <div className="achievements-grid">
+            {allAchievements.map(achievement => (
+              <div 
+                key={achievement.id} 
+                className={`achievement-card ${achievement.unlocked ? 'unlocked' : 'locked'}`}
+              >
+                <div className="achievement-icon">{achievement.icon}</div>
+                <div className="achievement-info">
+                  <h3>{achievement.name}</h3>
+                  <p>{achievement.description}</p>
+                </div>
+                {achievement.unlocked && <span className="unlocked-badge">✓</span>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   if (showStats) {
     return (
       <div className="app">

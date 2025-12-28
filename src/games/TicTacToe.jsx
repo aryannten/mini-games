@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import './TicTacToe.css'
+import { storage } from '../utils/storage'
 
 function TicTacToe({ onBack }) {
   const [board, setBoard] = useState(Array(9).fill(null))
@@ -79,8 +80,26 @@ function TicTacToe({ onBack }) {
       setWinner(gameWinner)
       if (gameWinner === 'X') {
         setXWins(prev => prev + 1)
+        // Save stats - only count as win if playing vs computer
+        if (gameMode === 'computer') {
+          storage.updateGameStats('tictactoe', {
+            gamesPlayed: 1,
+            gamesWon: 1
+          })
+        } else {
+          // Player vs Player - just track game played
+          storage.updateGameStats('tictactoe', {
+            gamesPlayed: 1,
+            gamesWon: 0
+          })
+        }
       } else {
         setOWins(prev => prev + 1)
+        // O wins - in computer mode this is computer win, in player mode it's player 2
+        storage.updateGameStats('tictactoe', {
+          gamesPlayed: 1,
+          gamesWon: 0 // Don't count computer wins or player 2 wins as player achievement
+        })
       }
     } else {
       setIsXNext(!isXNext)
@@ -100,8 +119,18 @@ function TicTacToe({ onBack }) {
           setWinner(gameWinner)
           if (gameWinner === 'O') {
             setOWins(prev => prev + 1)
+            // Computer wins - don't count as player win
+            storage.updateGameStats('tictactoe', {
+              gamesPlayed: 1,
+              gamesWon: 0
+            })
           } else {
             setXWins(prev => prev + 1)
+            // Player wins
+            storage.updateGameStats('tictactoe', {
+              gamesPlayed: 1,
+              gamesWon: 1
+            })
           }
         } else {
           setIsXNext(true)
@@ -117,6 +146,11 @@ function TicTacToe({ onBack }) {
     if (isDraw && !winner && !drawCountedRef.current) {
       drawCountedRef.current = true
       setDraws(prev => prev + 1)
+      // Save stats for draw
+      storage.updateGameStats('tictactoe', {
+        gamesPlayed: 1,
+        gamesWon: 0
+      })
     }
     if (winner || !isDraw) {
       drawCountedRef.current = false
