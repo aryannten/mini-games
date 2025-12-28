@@ -1,0 +1,150 @@
+.flappy-bird {
+  min-height: 100vh;
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 1rem;
+}
+
+.game-header h2 {
+  color: var(--text-color);
+  font-size: 1.8rem;
+}
+
+.back-btn,
+.reset-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover,
+.reset-btn:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+.flappy-info {
+  text-align: center;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.score-display {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: var(--text-color);
+  flex-wrap: wrap;
+}
+
+.score-display strong {
+  color: var(--primary-color);
+  font-size: 1.4rem;
+}
+
+.game-over-message {
+  background: rgba(239, 68, 68, 0.2);
+  border: 2px solid #ef4444;
+  color: #ef4444;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+}
+
+.start-message {
+  background: rgba(6, 182, 212, 0.2);
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.start-message p {
+  margin: 0.5rem 0;
+}
+
+.flappy-container {
+  width: 100%;
+  max-width: 600px;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid var(--border-color);
+  border-radius: 12px;
+  background: linear-gradient(to bottom, #87ceeb 0%, #98d8e8 100%);
+  cursor: pointer;
+}
+
+.sky {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.bird {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  font-size: 2rem;
+  z-index: 10;
+  transition: transform 0.1s ease;
+  filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.5));
+}
+
+.pipe {
+  position: absolute;
+  width: 50px;
+  background: linear-gradient(to right, #10b981, #059669);
+  border: 2px solid #047857;
+  border-radius: 4px;
+}
+
+.pipe-top {
+  top: 0;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.pipe-bottom {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.controls-hint {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+.controls-hint p {
+  margin: 0.25rem 0;
+}
+

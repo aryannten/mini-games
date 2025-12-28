@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './TicTacToe.css'
 
 function TicTacToe({ onBack }) {
@@ -7,6 +7,10 @@ function TicTacToe({ onBack }) {
   const [winner, setWinner] = useState(null)
   const [gameMode, setGameMode] = useState('select') // 'select', 'computer', 'player'
   const [isComputerThinking, setIsComputerThinking] = useState(false)
+  const [xWins, setXWins] = useState(0)
+  const [oWins, setOWins] = useState(0)
+  const [draws, setDraws] = useState(0)
+  const drawCountedRef = useRef(false)
 
   const checkWinner = (squares) => {
     const lines = [
@@ -73,6 +77,11 @@ function TicTacToe({ onBack }) {
     const gameWinner = checkWinner(newBoard)
     if (gameWinner) {
       setWinner(gameWinner)
+      if (gameWinner === 'X') {
+        setXWins(prev => prev + 1)
+      } else {
+        setOWins(prev => prev + 1)
+      }
     } else {
       setIsXNext(!isXNext)
     }
@@ -89,6 +98,11 @@ function TicTacToe({ onBack }) {
         const gameWinner = checkWinner(newBoard)
         if (gameWinner) {
           setWinner(gameWinner)
+          if (gameWinner === 'O') {
+            setOWins(prev => prev + 1)
+          } else {
+            setXWins(prev => prev + 1)
+          }
         } else {
           setIsXNext(true)
         }
@@ -97,11 +111,35 @@ function TicTacToe({ onBack }) {
     }
   }, [isXNext, gameMode, board, winner, isComputerThinking])
 
+  const isDraw = !winner && board.every(cell => cell !== null)
+  
+  useEffect(() => {
+    if (isDraw && !winner && !drawCountedRef.current) {
+      drawCountedRef.current = true
+      setDraws(prev => prev + 1)
+    }
+    if (winner || !isDraw) {
+      drawCountedRef.current = false
+    }
+  }, [isDraw, winner])
+
   const resetGame = () => {
     setBoard(Array(9).fill(null))
     setIsXNext(true)
     setWinner(null)
     setIsComputerThinking(false)
+    drawCountedRef.current = false
+  }
+
+  const newRound = () => {
+    resetGame()
+  }
+
+  const resetScore = () => {
+    setXWins(0)
+    setOWins(0)
+    setDraws(0)
+    resetGame()
   }
 
   const startNewGame = (mode) => {
@@ -113,8 +151,6 @@ function TicTacToe({ onBack }) {
     setGameMode('select')
     resetGame()
   }
-
-  const isDraw = !winner && board.every(cell => cell !== null)
 
   const getStatusMessage = () => {
     if (winner) {
@@ -167,7 +203,25 @@ function TicTacToe({ onBack }) {
       <div className="game-header">
         <button onClick={backToModeSelect} className="back-btn">← Mode</button>
         <h2>Tic Tac Toe - {gameMode === 'computer' ? 'vs Computer' : 'vs Player'}</h2>
-        <button onClick={resetGame} className="reset-btn">Reset</button>
+        <div className="header-buttons">
+          <button onClick={newRound} className="new-round-btn">New Round</button>
+          <button onClick={resetScore} className="reset-btn">Reset Score</button>
+        </div>
+      </div>
+
+      <div className="score-display">
+        <div className="score-item">
+          <span className="score-label">{gameMode === 'computer' ? 'You' : 'Player 1'}</span>
+          <span className="score-value">{xWins}</span>
+        </div>
+        <div className="score-item">
+          <span className="score-label">Draws</span>
+          <span className="score-value">{draws}</span>
+        </div>
+        <div className="score-item">
+          <span className="score-label">{gameMode === 'computer' ? 'Computer' : 'Player 2'}</span>
+          <span className="score-value">{oWins}</span>
+        </div>
       </div>
       
       <div className="game-status">

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './RockPaperScissors.css'
+import { storage } from '../utils/storage'
 
 function RockPaperScissors({ onBack }) {
   const [playerChoice, setPlayerChoice] = useState('')
@@ -9,6 +10,18 @@ function RockPaperScissors({ onBack }) {
   const [result, setResult] = useState('')
   const [gameHistory, setGameHistory] = useState([])
   const [isPlaying, setIsPlaying] = useState(false)
+
+  // Update best score when player score changes
+  useEffect(() => {
+    if (playerScore > 0) {
+      const gameStats = storage.getGameStats('rockpaperscissors')
+      if (gameStats.bestScore === null || playerScore > gameStats.bestScore) {
+        storage.updateGameStats('rockpaperscissors', {
+          bestScore: playerScore
+        })
+      }
+    }
+  }, [playerScore])
 
   const choices = [
     { name: 'rock', emoji: '🪨', beats: 'scissors' },
@@ -45,6 +58,12 @@ function RockPaperScissors({ onBack }) {
         computer: computerChoice,
         result: gameResult
       }])
+      
+      // Save stats (will update bestScore after state updates)
+      storage.updateGameStats('rockpaperscissors', {
+        gamesPlayed: 1,
+        gamesWon: gameResult === 'You win!' ? 1 : 0
+      })
       
       setIsPlaying(false)
     }, 1000)

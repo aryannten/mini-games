@@ -1,0 +1,139 @@
+.instructions-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+.instructions-modal {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.instructions-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.instructions-header h2 {
+  margin: 0;
+  color: var(--text-color);
+  font-size: 1.5rem;
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 2rem;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.close-button:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: rotate(90deg);
+}
+
+.instructions-body {
+  padding: 1.5rem;
+  color: var(--text-color);
+}
+
+.instructions-content {
+  line-height: 1.8;
+}
+
+.instructions-content ol {
+  padding-left: 1.5rem;
+}
+
+.instructions-content li {
+  margin-bottom: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.instructions-content li::marker {
+  color: var(--primary-color);
+}
+
+.game-instructions-list {
+  margin-top: 1.5rem;
+}
+
+.instruction-item {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.instruction-item h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-color);
+  font-size: 1.1rem;
+}
+
+.instruction-item p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .instructions-modal {
+    width: 95%;
+    max-height: 90vh;
+  }
+
+  .instructions-header {
+    padding: 1rem;
+  }
+
+  .instructions-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .instructions-body {
+    padding: 1rem;
+  }
+}
+

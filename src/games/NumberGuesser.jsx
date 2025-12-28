@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import './NumberGuesser.css'
+import { storage } from '../utils/storage'
 
 function NumberGuesser({ onBack }) {
   const [targetNumber, setTargetNumber] = useState(0)
@@ -41,6 +42,12 @@ function NumberGuesser({ onBack }) {
     if (numGuess === targetNumber) {
       setMessage(`🎉 Congratulations! You guessed it in ${newAttempts} attempts!`)
       setGameWon(true)
+      // Save stats
+      storage.updateGameStats('numberguesser', {
+        gamesPlayed: 1,
+        gamesWon: 1,
+        minAttempts: newAttempts
+      })
     } else if (numGuess < targetNumber) {
       setMessage(`Too low! Try a higher number.`)
     } else {

@@ -1,0 +1,244 @@
+.infinite-racing {
+  min-height: 100vh;
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 1rem;
+}
+
+.game-header h2 {
+  color: var(--text-color);
+  font-size: 1.8rem;
+}
+
+.back-btn,
+.reset-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover,
+.reset-btn:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+.racing-info {
+  text-align: center;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.score-display {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--text-color);
+  flex-wrap: wrap;
+}
+
+.score-display strong {
+  color: var(--primary-color);
+  font-size: 1.3rem;
+}
+
+.paused-indicator {
+  background: rgba(245, 158, 11, 0.2);
+  border: 2px solid #f59e0b;
+  color: #f59e0b;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+}
+
+.game-over-message {
+  background: rgba(239, 68, 68, 0.2);
+  border: 2px solid #ef4444;
+  color: #ef4444;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+}
+
+.racing-container {
+  width: 100%;
+  max-width: 600px;
+  height: 600px;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid var(--border-color);
+  border-radius: 12px;
+  background: #1a1a2e;
+}
+
+.road {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: linear-gradient(to bottom, #2d2d44 0%, #1a1a2e 100%);
+  overflow: hidden;
+}
+
+.road-lines {
+  position: absolute;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    #ffd700 0px,
+    #ffd700 40px,
+    transparent 40px,
+    transparent 80px
+  );
+  transform: translateX(-50%);
+  animation: roadMove 0.5s linear infinite;
+}
+
+.road-lines:nth-child(2) {
+  left: 33.33%;
+}
+
+.road-lines:nth-child(3) {
+  left: 66.67%;
+}
+
+@keyframes roadMove {
+  from {
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    transform: translateX(-50%) translateY(80px);
+  }
+}
+
+.player-car {
+  position: absolute;
+  width: 40px;
+  height: 60px;
+  font-size: 2.5rem;
+  transition: left 0.2s ease;
+  z-index: 10;
+  filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.5));
+}
+
+.obstacle-car {
+  position: absolute;
+  width: 40px;
+  height: 60px;
+  font-size: 2.5rem;
+  z-index: 5;
+  filter: drop-shadow(0 0 5px rgba(239, 68, 68, 0.5));
+}
+
+.racing-controls {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 1rem;
+}
+
+.mobile-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.direction-btn {
+  background: var(--card-bg);
+  border: 2px solid var(--border-color);
+  color: var(--text-color);
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.direction-btn:active:not(:disabled) {
+  background: var(--primary-color);
+  transform: scale(0.95);
+}
+
+.direction-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pause-btn {
+  background: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pause-btn:active {
+  transform: scale(0.95);
+}
+
+.controls-hint {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+.controls-hint p {
+  margin: 0.25rem 0;
+}
+
+@media (min-width: 768px) {
+  .mobile-controls {
+    display: none;
+  }
+
+  .controls-hint {
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  .controls-hint p:last-child {
+    display: none;
+  }
+}
+

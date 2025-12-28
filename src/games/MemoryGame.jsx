@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './MemoryGame.css'
+import { storage } from '../utils/storage'
 
 function MemoryGame({ onBack }) {
   const [cards, setCards] = useState([])
@@ -8,6 +9,9 @@ function MemoryGame({ onBack }) {
   const [moves, setMoves] = useState(0)
   const [gameWon, setGameWon] = useState(false)
   const [difficulty, setDifficulty] = useState('easy')
+  const [timer, setTimer] = useState(0)
+  const [isTimerRunning, setIsTimerRunning] = useState(false)
+  const timerIntervalRef = useRef(null)
 
   const difficulties = {
     easy: { pairs: 6, gridSize: '4x3' },
@@ -35,6 +39,8 @@ function MemoryGame({ onBack }) {
     setMatchedCards([])
     setMoves(0)
     setGameWon(false)
+    setTimer(0)
+    setIsTimerRunning(true)
   }
 
   useEffect(() => {
@@ -61,10 +67,34 @@ function MemoryGame({ onBack }) {
   }, [flippedCards, cards])
 
   useEffect(() => {
+    if (isTimerRunning && !gameWon && cards.length > 0) {
+      timerIntervalRef.current = setInterval(() => {
+        setTimer(prev => prev + 1)
+      }, 1000)
+    } else {
+      if (timerIntervalRef.current) {
+        clearInterval(timerIntervalRef.current)
+      }
+    }
+    return () => {
+      if (timerIntervalRef.current) {
+        clearInterval(timerIntervalRef.current)
+      }
+    }
+  }, [isTimerRunning, gameWon, cards.length])
+
+  useEffect(() => {
     if (matchedCards.length === cards.length && cards.length > 0) {
       setGameWon(true)
+      setIsTimerRunning(false)
+      // Save stats when game is won
+      storage.updateGameStats('memory', {
+        gamesPlayed: 1,
+        gamesWon: 1,
+        score: moves // Use moves as score (lower is better, but we'll track it)
+      })
     }
-  }, [matchedCards, cards])
+  }, [matchedCards, cards, moves])
 
   const handleCardClick = (cardId) => {
     if (flippedCards.length === 2 || 
@@ -112,6 +142,7 @@ function MemoryGame({ onBack }) {
         <div className="matches">
           Matches: {matchedCards.length / 2} / {difficulties[difficulty].pairs}
         </div>
+        <div className="timer">Time: {Math.floor(timer / 60)}:{(timer % 60).toString().padStart(2, '0')}</div>
       </div>
 
       {gameWon && (

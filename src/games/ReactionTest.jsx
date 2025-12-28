@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import './ReactionTest.css'
+import { storage } from '../utils/storage'
 
 export default function ReactionTest({ onBack }) {
   const [phase, setPhase] = useState('start') // start, wait, go, result
@@ -9,6 +10,11 @@ export default function ReactionTest({ onBack }) {
   const timeoutRef = useRef(null)
 
   useEffect(() => {
+    // Load best reaction time from storage
+    const gameStats = storage.getGameStats('reactiontest')
+    if (gameStats.bestReaction !== null) {
+      setBest(gameStats.bestReaction)
+    }
     return () => clearTimeout(timeoutRef.current)
   }, [])
 
@@ -37,7 +43,21 @@ export default function ReactionTest({ onBack }) {
       const rt = Math.round(now - startTime)
       setReaction(rt)
       setPhase('result')
-      if (best === null || rt < best) setBest(rt)
+      
+      // Update best if this is better
+      if (best === null || rt < best) {
+        setBest(rt)
+        // Save to storage
+        storage.updateGameStats('reactiontest', {
+          gamesPlayed: 1,
+          bestReaction: rt
+        })
+      } else {
+        // Still save that a game was played
+        storage.updateGameStats('reactiontest', {
+          gamesPlayed: 1
+        })
+      }
     }
   }
 
@@ -58,20 +78,33 @@ export default function ReactionTest({ onBack }) {
           role="button"
           tabIndex={0}
           className={`reaction-box ${phase}`}
-          onClick={handleClick}
-          onKeyDown={(e) => e.key === 'Enter' && handleClick()}
+          onClick={phase === 'start' ? begin : handleClick}
+          onKeyDown={(e) => {
+            if (phase === 'start' && e.key === 'Enter') {
+              begin()
+            } else if (e.key === 'Enter') {
+              handleClick()
+            }
+          }}
         >
-          {phase === 'start' && <div className="msg">Click to start</div>}
+          {phase === 'start' && (
+            <div className="start-screen">
+              <div className="msg">Click anywhere to start</div>
+              <button onClick={begin} className="start-button">Start Test</button>
+            </div>
+          )}
           {phase === 'wait' && <div className="msg">Wait for green...</div>}
           {phase === 'go' && <div className="msg">Click!</div>}
           {phase === 'result' && (
-            <div className="msg">{reaction === 'Too soon!' ? reaction : `${reaction} ms`}</div>
+            <div className="result-screen">
+              <div className="msg">{reaction === 'Too soon!' ? reaction : `${reaction} ms`}</div>
+              <button onClick={begin} className="start-button">Try Again</button>
+            </div>
           )}
         </div>
 
         <div className="reaction-controls">
-          <button onClick={begin} className="primary">Start</button>
-          <button onClick={reset}>Reset</button>
+          <button onClick={reset} className="reset-btn">Reset</button>
           <div className="stats">
             <div>Last: {reaction ? (reaction === 'Too soon!' ? reaction : `${reaction} ms`) : '-'}</div>
             <div>Best: {best ? `${best} ms` : '-'}</div>

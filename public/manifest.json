@@ -1,0 +1,37 @@
+{
+  "name": "Arcade Hub - Mini Game Collection",
+  "short_name": "Arcade Hub",
+  "description": "Play exciting mini games right in your browser",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#9333ea",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["games", "entertainment"],
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "Memory Match",
+      "short_name": "Memory",
+      "description": "Play Memory Match",
+      "url": "/?game=memory",
+      "icons": []
+    },
+    {
+      "name": "Snake",
+      "short_name": "Snake",
+      "description": "Play Snake",
+      "url": "/?game=snake",
+      "icons": []
+    }
+  ]
+}
+

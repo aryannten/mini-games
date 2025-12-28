@@ -1,0 +1,150 @@
+.breakout {
+  min-height: 100vh;
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 1rem;
+}
+
+.game-header h2 {
+  color: var(--text-color);
+  font-size: 1.8rem;
+}
+
+.back-btn,
+.reset-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover,
+.reset-btn:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+}
+
+.breakout-info {
+  text-align: center;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.score-display {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--text-color);
+  flex-wrap: wrap;
+}
+
+.score-display strong {
+  color: var(--primary-color);
+  font-size: 1.3rem;
+}
+
+.game-over-message {
+  background: rgba(239, 68, 68, 0.2);
+  border: 2px solid #ef4444;
+  color: #ef4444;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+}
+
+.game-won-message {
+  background: rgba(16, 185, 129, 0.2);
+  border: 2px solid #10b981;
+  color: #10b981;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin: 0.5rem 0;
+}
+
+.start-message {
+  background: rgba(6, 182, 212, 0.2);
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+
+.breakout-container {
+  width: 600px;
+  height: 500px;
+  position: relative;
+  border: 3px solid var(--border-color);
+  border-radius: 12px;
+  background: #0f172a;
+  overflow: hidden;
+  cursor: none;
+}
+
+.brick {
+  position: absolute;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(6, 182, 212, 0.3);
+}
+
+.paddle {
+  position: absolute;
+  background: var(--primary-color);
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+  transition: left 0.1s ease;
+}
+
+.ball {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.controls-hint {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+.controls-hint p {
+  margin: 0.25rem 0;
+}
+
+@media (max-width: 768px) {
+  .breakout-container {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
